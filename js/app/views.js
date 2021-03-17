@@ -460,6 +460,52 @@ var PageCoherenceView = CollectionView.extend({
 
     },
 
+    onRender() {
+        console.log(this.model);
+        var self = this;
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var labels = Array.from(Array(this.model.get('series').length).keys());
+        var data = {
+            labels: labels,
+            datasets: [{
+                label: "Когерентність груп",
+                data: self.model.get('series'),
+                backgroundColor: 'transparent',
+                fill: false,
+                pointBorderColor: 'orange',
+                pointBackgroundColor: self.alternatePointStyles,
+                borderColor: 'orange',
+                pointRadius: 10
+            }]
+        };
+        window.series = this.model.get('series');
+        var stackedLine = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Когерентність'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Номер угрупування'
+                        }
+                    }]
+                }
+            }
+        });
+    },
+
+    alternatePointStyles: function (ctx) {
+        var value = parseFloat(ctx.dataset.data[ctx.dataIndex]);
+        return value >= 0.5 ? 'orange' : 'red';
+    },
+
     /**
      * Reset collection on the page change event
      */
@@ -796,6 +842,7 @@ var PageView = View.extend({
                     'el': element,
                     'model': new Backbone.Model(self.activeData)
                 }).render());
+
                 break;
             case "ExtractCoreferent":
                 self.showChildView('content', new PageCoreferenceView({

@@ -117,8 +117,10 @@
                             <
                             <%
                             var j = i + 1;
-                            for (j = i + 1; j < i + 4; j++) { print(j) }
+                            var items = []
+                            for (j = i + 1; j < i + 4; j++) { items.push(j); }
                             %>
+                            <%= items.join(" ") %>
                             >
                         </td>
                         <td>
@@ -128,6 +130,9 @@
                     <% } %>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-sm-6">
+                <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         </div>
 
@@ -256,6 +261,7 @@
 <script type="text/javascript" src="js/backbone.radio.js"></script>
 <script type="text/javascript" src="js/backbone.marionette.min.js"></script>
 <script type="text/javascript" src="js/noty.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
 
 <script type="text/javascript" src="js/app/models.js"></script>
 <script type="text/javascript" src="js/app/views.js"></script>
