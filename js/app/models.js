@@ -29,7 +29,7 @@ const basicRadioChannelEvents = {
  * Server IP
  * @type {string}
  */
-const hostIP = "http://7ede442c6916.ngrok.io";
+const hostIP = "https://7ede442c6916.ngrok.io";
 
 /**
  * API endpoints
