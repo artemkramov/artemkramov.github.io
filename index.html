@@ -82,7 +82,10 @@
 </script>
 
 <script type="text/template" id="page-coherence-template">
-    <p><%= text %></p>
+    <p><% text %></p>
+    <ul id="coherence-sentences"><% _.each(sentences, function (sentence) { %>
+        <li><%= sentence %></li>
+        <% }); %></ul>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">

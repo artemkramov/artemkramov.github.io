@@ -464,7 +464,11 @@ var PageCoherenceView = CollectionView.extend({
         console.log(this.model);
         var self = this;
         var ctx = document.getElementById('myChart').getContext('2d');
-        var labels = Array.from(Array(this.model.get('series').length).keys());
+        var labels = [];
+        var i = 0;
+        for (i = 0; i < this.model.get('series').length; i++) {
+            labels.push(i+1);
+        }
         var data = {
             labels: labels,
             datasets: [{
@@ -475,7 +479,8 @@ var PageCoherenceView = CollectionView.extend({
                 pointBorderColor: 'orange',
                 pointBackgroundColor: self.alternatePointStyles,
                 borderColor: 'orange',
-                pointRadius: 10
+                pointRadius: 10,
+                pointHoverRadius: 15
             }]
         };
         window.series = this.model.get('series');
@@ -496,6 +501,20 @@ var PageCoherenceView = CollectionView.extend({
                             labelString: 'Номер угрупування'
                         }
                     }]
+                },
+                onClick: function(evt) {
+                    var element = stackedLine.getElementAtEvent(evt);
+                    var list = $("#coherence-sentences").find("li");
+                    var className = "active";
+                    $(list).removeClass(className);
+                    if(element.length > 0)
+                    {
+                        var ind = element[0]._index;
+                        var i = 0;
+                        for (i = ind; i < ind + 3; i++) {
+                            list.eq(i).addClass(className);
+                        }
+                    }
                 }
             }
         });

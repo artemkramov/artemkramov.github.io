@@ -87,4 +87,9 @@ body .noty_theme__metroui.noty_type__success {
 .token.active {
   font-size: 1.1em; }
 
+#coherence-sentences li.active {
+  background: #0c609c;
+  color: #FFF;
+  padding: 5px; }
+
 /*# sourceMappingURL=style.css.map */
