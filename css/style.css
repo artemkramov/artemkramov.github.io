@@ -2,7 +2,8 @@ body #header {
   height: 280px; }
   body #header .jumbotron {
     padding: 2rem 1rem;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    position: static !important; }
   body #header .btn-header-control {
     margin-left: 15px; }
   body #header .select-cluster-wrapper {
